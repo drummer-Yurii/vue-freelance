@@ -7,13 +7,14 @@ import RequestsReceived from '@/pages/requests/RequestsReceived';
 import NotFound from '@/pages/NotFound';
 
 const router = createRouter({
-  history: createWebHistory,
+  history: createWebHistory(),
   routes: [
+    {path: '/', redirect: '/devs'},
     { path: '/devs', component: DevList },
     {
       path: '/devs/:id',
       component: DevDetails,
-      children: [{ path: '/contact', component: ContactDev }],
+      children: [{ path: 'contact', component: ContactDev }],
     },
     { path: '/register', component: DevRegistration },
     { path: '/requests', component: RequestsReceived },

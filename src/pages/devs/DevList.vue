@@ -1,5 +1,10 @@
 <template>
-  <div></div>
+  <section>
+    FILTER
+  </section>
+  <section>
+    LIST OF DEVS
+  </section>
 </template>
 
 <script>
