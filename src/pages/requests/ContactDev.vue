@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <div>CONTACT PAGE</div>
 </template>
 
 <script>
