@@ -1,30 +1,36 @@
 <template>
   <section>FILTER</section>
   <section>
-    <div class="controls">
-      <button>Refresh</button>
-      <router-link to="/register">Register as a Developer</router-link>
-    </div>
-    <ul v-if="hasDev">
-      <DevItem
-        v-for="dev in filteredList"
-        :key="dev.id"
-        id="dev.id"
-        :first-name="dev.firstName"
-        :last-name="dev.lastName"
-        :rate="dev.hourlyRate"
-        :areas="dev.areas"
-      >
-      </DevItem>
-    </ul>
-    <p v-else>No developers found</p>
+    <BaseCard>
+      <div class="controls">
+        <button>Refresh</button>
+        <router-link to="/register">Register as a Developer</router-link>
+      </div>
+      <ul v-if="hasDev">
+        <DevItem
+          v-for="dev in filteredList"
+          :key="dev.id"
+          id="dev.id"
+          :first-name="dev.firstName"
+          :last-name="dev.lastName"
+          :rate="dev.hourlyRate"
+          :areas="dev.areas"
+        >
+        </DevItem>
+      </ul>
+      <p v-else>No developers found</p>
+    </BaseCard>
   </section>
 </template>
 
 <script>
+import BaseCard from '../components/ui/BaseCard';
 import DevItem from '../components/DevItem';
 export default {
-  components: { DevItem },
+  components: {
+    BaseCard,
+    DevItem,
+  },
   name: 'DevList',
   computed: {
     filteredList() {
