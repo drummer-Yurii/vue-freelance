@@ -5,13 +5,15 @@
   </li>
   <span v-for="area in areas" :key="area.id">{{ area }}</span>
   <div class="actions">
-    <router-link :to="devContactLink">Contact</router-link>
-    <router-link :to="devDetailsLink">ViewDetails</router-link>
+    <BaseButton mode="outline" link :to="devContactLink">Contact</BaseButton>
+    <BaseButton link :to="devDetailsLink">ViewDetails</BaseButton>
   </div>
 </template>
 
 <script>
+import BaseButton from './ui/BaseButton'
 export default {
+  components: { BaseButton },
   name: 'DevItem',
   props: ['id', 'firstName', 'lastName', 'rate', 'areas'],
   computed: {

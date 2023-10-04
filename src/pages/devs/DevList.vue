@@ -3,8 +3,8 @@
   <section>
     <BaseCard>
       <div class="controls">
-        <button>Refresh</button>
-        <router-link to="/register">Register as a Developer</router-link>
+        <BaseButton mode="outline">Refresh</BaseButton>
+        <BaseButton link to="/register">Register as a Developer</BaseButton> 
       </div>
       <ul v-if="hasDev">
         <DevItem
@@ -26,10 +26,12 @@
 <script>
 import BaseCard from '../components/ui/BaseCard';
 import DevItem from '../components/DevItem';
+import BaseButton from '../components/ui/BaseButton.vue';
 export default {
   components: {
     BaseCard,
     DevItem,
+    BaseButton,
   },
   name: 'DevList',
   computed: {
