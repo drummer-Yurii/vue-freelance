@@ -28,7 +28,7 @@ export default {
       return '/devs/' + this.id + '/contact';
     },
     devDetailsLink() {
-      return '/devs/' + this.id;
+      return 'devs/' + this.id;
     },
   },
 };

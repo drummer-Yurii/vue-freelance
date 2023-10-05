@@ -16,9 +16,9 @@ export default {
   name: 'DevRegistration',
   methods: {
     saveData(data) {
-      
-    }
-  }
+      this.$store.dispatch('devModule/regDev', data);
+    },
+  },
 };
 </script>
 

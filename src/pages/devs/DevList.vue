@@ -6,7 +6,7 @@
     <BaseCard>
       <div class="controls">
         <BaseButton mode="outline">Refresh</BaseButton>
-        <BaseButton link to="/register">Register as a Developer</BaseButton>
+        <BaseButton link to="/register" v-if="!isDev">Register as a Developer</BaseButton>
       </div>
       <ul v-if="hasDev">
         <DevItem
@@ -65,6 +65,9 @@ export default {
     },
     hasDev() {
       return this.$store.getters['devModule/hasDev'];
+    },
+    isDev() {
+      return this.$store.getters['devModule/isDevs'];
     },
   },
   methods: {
