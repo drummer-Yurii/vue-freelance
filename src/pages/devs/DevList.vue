@@ -1,10 +1,12 @@
 <template>
-  <section>FILTER</section>
+  <section>
+    <DevFilter @change-filter="setFilters"></DevFilter>
+  </section>
   <section>
     <BaseCard>
       <div class="controls">
         <BaseButton mode="outline">Refresh</BaseButton>
-        <BaseButton link to="/register">Register as a Developer</BaseButton> 
+        <BaseButton link to="/register">Register as a Developer</BaseButton>
       </div>
       <ul v-if="hasDev">
         <DevItem
@@ -24,22 +26,50 @@
 </template>
 
 <script>
+import DevFilter from './DevFilter';
 import BaseCard from '../components/ui/BaseCard';
 import DevItem from '../components/DevItem';
 import BaseButton from '../components/ui/BaseButton.vue';
 export default {
   components: {
+    DevFilter,
     BaseCard,
     DevItem,
     BaseButton,
   },
   name: 'DevList',
+  data() {
+    return {
+      activeFilters: {
+        frontend: true,
+        backend: true,
+        fullstack: true,
+      },
+    };
+  },
   computed: {
     filteredList() {
-      return this.$store.getters['devModule/devs'];
+      const devs = this.$store.getters['devModule/devs'];
+      return devs.filter((dev) => {
+        if (this.activeFilters.frontend && dev.areas.includes('frontend')) {
+          return true;
+        }
+        if (this.activeFilters.backend && dev.areas.includes('backend')) {
+          return true;
+        }
+        if (this.activeFilters.fullstack && dev.areas.includes('fullstack')) {
+          return true;
+        }
+        return false;
+      });
     },
     hasDev() {
       return this.$store.getters['devModule/hasDev'];
+    },
+  },
+  methods: {
+    setFilters(updatedFilters) {
+      this.activeFilters = updatedFilters;
     },
   },
 };
