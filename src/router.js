@@ -9,11 +9,12 @@ import NotFound from '@/pages/NotFound';
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    {path: '/', redirect: '/devs'},
+    { path: '/', redirect: '/devs' },
     { path: '/devs', component: DevList },
     {
       path: '/devs/:id',
       component: DevDetails,
+      props: true,
       children: [{ path: 'contact', component: ContactDev }],
     },
     { path: '/register', component: DevRegistration },

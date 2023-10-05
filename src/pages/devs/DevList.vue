@@ -10,7 +10,7 @@
         <DevItem
           v-for="dev in filteredList"
           :key="dev.id"
-          id="dev.id"
+          :id="dev.id"
           :first-name="dev.firstName"
           :last-name="dev.lastName"
           :rate="dev.hourlyRate"
