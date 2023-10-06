@@ -24,4 +24,24 @@ export default {
       id: userId,
     });
   },
+  async loadDevs(context) {
+    const response = await fetch(`https://app-vue-c4cfa-default-rtdb.firebaseio.com/devs.json`);
+    const responseData = await response.json();
+    if (!response.ok) {
+      // errors
+    }
+    const devs = [];
+    for (const key in responseData) {
+      const dev = {
+        id: key,
+        firstName: responseData[key].firstName,
+        lastName: responseData[key].lastName,
+        description: responseData[key].description,
+        hourlyRate: responseData[key].hourlyRate,
+        areas: responseData[key].areas,
+      };
+      devs.push(dev);
+    }
+    context.commit('setDevs', devs);
+  },
 };

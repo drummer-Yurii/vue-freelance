@@ -5,7 +5,7 @@
   <section>
     <BaseCard>
       <div class="controls">
-        <BaseButton mode="outline">Refresh</BaseButton>
+        <BaseButton mode="outline" @click="loadDevs">Refresh</BaseButton>
         <BaseButton link to="/register" v-if="!isDev">Register as a Developer</BaseButton>
       </div>
       <ul v-if="hasDev">
@@ -70,9 +70,15 @@ export default {
       return this.$store.getters['devModule/isDevs'];
     },
   },
+  created() {
+    this.loadDevs();
+  },
   methods: {
     setFilters(updatedFilters) {
       this.activeFilters = updatedFilters;
+    },
+    loadDevs() {
+      return this.$store.dispatch('devModule/loadDevs');
     },
   },
 };
