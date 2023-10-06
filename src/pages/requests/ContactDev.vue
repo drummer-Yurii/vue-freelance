@@ -37,7 +37,7 @@ export default {
       this.$store.dispatch('requestModule/contactDev', {
         email: this.email,
         message: this.message,
-        devId: this.$route.params.id,
+        developId: this.$route.params.id,
       });
       this.$router.replace('/devs');
     },
