@@ -8,7 +8,10 @@
         <BaseButton mode="outline" @click="loadDevs">Refresh</BaseButton>
         <BaseButton link to="/register" v-if="!isDev">Register as a Developer</BaseButton>
       </div>
-      <ul v-if="hasDev">
+      <div v-if="isLoading">
+        <BaseSpinner></BaseSpinner>
+      </div>
+      <ul v-else-if="hasDev">
         <DevItem
           v-for="dev in filteredList"
           :key="dev.id"
@@ -26,12 +29,14 @@
 </template>
 
 <script>
+import BaseSpinner from '../components/ui/BaseSpinner'
 import DevFilter from './DevFilter';
 import BaseCard from '../components/ui/BaseCard';
 import DevItem from '../components/DevItem';
 import BaseButton from '../components/ui/BaseButton.vue';
 export default {
   components: {
+    BaseSpinner,
     DevFilter,
     BaseCard,
     DevItem,
@@ -40,6 +45,7 @@ export default {
   name: 'DevList',
   data() {
     return {
+      isLoading: false,
       activeFilters: {
         frontend: true,
         backend: true,
@@ -77,8 +83,10 @@ export default {
     setFilters(updatedFilters) {
       this.activeFilters = updatedFilters;
     },
-    loadDevs() {
-      return this.$store.dispatch('devModule/loadDevs');
+    async loadDevs() {
+      this.isLoading = true;
+      await this.$store.dispatch('devModule/loadDevs');
+      this.isLoading = false;
     },
   },
 };
