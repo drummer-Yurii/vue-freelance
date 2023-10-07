@@ -28,7 +28,8 @@ export default {
     const response = await fetch(`https://app-vue-c4cfa-default-rtdb.firebaseio.com/devs.json`);
     const responseData = await response.json();
     if (!response.ok) {
-      // errors
+      const error = new Error(responseData.message || 'Failed to fetch!!!');
+      throw error;
     }
     const devs = [];
     for (const key in responseData) {

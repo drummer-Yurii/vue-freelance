@@ -1,4 +1,7 @@
 <template>
+  <BaseDialog :show="!!error" title="An error has occurred" @close="handleError">
+    {{ error }}
+  </BaseDialog>
   <section>
     <DevFilter @change-filter="setFilters"></DevFilter>
   </section>
@@ -29,13 +32,15 @@
 </template>
 
 <script>
-import BaseSpinner from '../components/ui/BaseSpinner'
+import BaseDialog from '../components/ui/BaseDialog';
+import BaseSpinner from '../components/ui/BaseSpinner';
 import DevFilter from './DevFilter';
 import BaseCard from '../components/ui/BaseCard';
 import DevItem from '../components/DevItem';
 import BaseButton from '../components/ui/BaseButton.vue';
 export default {
   components: {
+    BaseDialog,
     BaseSpinner,
     DevFilter,
     BaseCard,
@@ -46,6 +51,7 @@ export default {
   data() {
     return {
       isLoading: false,
+      error: null,
       activeFilters: {
         frontend: true,
         backend: true,
@@ -85,8 +91,15 @@ export default {
     },
     async loadDevs() {
       this.isLoading = true;
-      await this.$store.dispatch('devModule/loadDevs');
+      try {
+        await this.$store.dispatch('devModule/loadDevs');
+      } catch (error) {
+        this.error = error.message || 'Something went wrong!';
+      }
       this.isLoading = false;
+    },
+    handleError() {
+      this.error = null;
     },
   },
 };
