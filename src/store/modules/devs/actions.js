@@ -25,6 +25,9 @@ export default {
     });
   },
   async loadDevs(context) {
+    if (!context.getters.shouldUpdate) {
+      return;
+    }
     const response = await fetch(`https://app-vue-c4cfa-default-rtdb.firebaseio.com/devs.json`);
     const responseData = await response.json();
     if (!response.ok) {
@@ -44,5 +47,6 @@ export default {
       devs.push(dev);
     }
     context.commit('setDevs', devs);
+    context.commit('setFetchTimeStamp');
   },
 };

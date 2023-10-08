@@ -5,4 +5,7 @@ export default {
   setDevs(state, payload) {
     state.devs = payload;
   },
+  setFetchTimeStamp(state) {
+    state.lastFetch = new Date().getTime();
+  },
 };
