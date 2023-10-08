@@ -1,34 +1,36 @@
 <template>
-  <BaseDialog :show="!!error" title="An error has occurred" @close="handleError">
-    {{ error }}
-  </BaseDialog>
-  <section>
-    <DevFilter @change-filter="setFilters"></DevFilter>
-  </section>
-  <section>
-    <BaseCard>
-      <div class="controls">
-        <BaseButton mode="outline" @click="loadDevs(true)">Refresh</BaseButton>
-        <BaseButton link to="/register" v-if="!isDev">Register as a Developer</BaseButton>
-      </div>
-      <div v-if="isLoading">
-        <BaseSpinner></BaseSpinner>
-      </div>
-      <ul v-else-if="hasDev">
-        <DevItem
-          v-for="dev in filteredList"
-          :key="dev.id"
-          :id="dev.id"
-          :first-name="dev.firstName"
-          :last-name="dev.lastName"
-          :rate="dev.hourlyRate"
-          :areas="dev.areas"
-        >
-        </DevItem>
-      </ul>
-      <p v-else>No developers found</p>
-    </BaseCard>
-  </section>
+  <div>
+    <BaseDialog :show="!!error" title="An error has occurred" @close="handleError">
+      {{ error }}
+    </BaseDialog>
+    <section>
+      <DevFilter @change-filter="setFilters"></DevFilter>
+    </section>
+    <section>
+      <BaseCard>
+        <div class="controls">
+          <BaseButton mode="outline" @click="loadDevs(true)">Refresh</BaseButton>
+          <BaseButton link to="/register" v-if="!isDev">Register as a Developer</BaseButton>
+        </div>
+        <div v-if="isLoading">
+          <BaseSpinner></BaseSpinner>
+        </div>
+        <ul v-else-if="hasDev">
+          <DevItem
+            v-for="dev in filteredList"
+            :key="dev.id"
+            :id="dev.id"
+            :first-name="dev.firstName"
+            :last-name="dev.lastName"
+            :rate="dev.hourlyRate"
+            :areas="dev.areas"
+          >
+          </DevItem>
+        </ul>
+        <p v-else>No developers found</p>
+      </BaseCard>
+    </section>
+  </div>
 </template>
 
 <script>
