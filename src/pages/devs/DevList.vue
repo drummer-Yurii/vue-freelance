@@ -8,7 +8,7 @@
   <section>
     <BaseCard>
       <div class="controls">
-        <BaseButton mode="outline" @click="loadDevs">Refresh</BaseButton>
+        <BaseButton mode="outline" @click="loadDevs(true)">Refresh</BaseButton>
         <BaseButton link to="/register" v-if="!isDev">Register as a Developer</BaseButton>
       </div>
       <div v-if="isLoading">
@@ -89,10 +89,10 @@ export default {
     setFilters(updatedFilters) {
       this.activeFilters = updatedFilters;
     },
-    async loadDevs() {
+    async loadDevs(refresh = false) {
       this.isLoading = true;
       try {
-        await this.$store.dispatch('devModule/loadDevs');
+        await this.$store.dispatch('devModule/loadDevs', { forceRefresh: refresh });
       } catch (error) {
         this.error = error.message || 'Something went wrong!';
       }

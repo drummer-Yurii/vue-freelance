@@ -24,8 +24,8 @@ export default {
       id: userId,
     });
   },
-  async loadDevs(context) {
-    if (!context.getters.shouldUpdate) {
+  async loadDevs(context, payload) {
+    if (!payload.forceRefresh && !context.getters.shouldUpdate) {
       return;
     }
     const response = await fetch(`https://app-vue-c4cfa-default-rtdb.firebaseio.com/devs.json`);
