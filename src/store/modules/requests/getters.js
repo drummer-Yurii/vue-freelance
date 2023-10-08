@@ -1,5 +1,5 @@
 export default {
-  requests(state, rootGetters) {
+  requests(state, _, _2, rootGetters) {
     const devId = rootGetters.userId;
     return state.requests.filter((req) => req.devId === devId);
   },

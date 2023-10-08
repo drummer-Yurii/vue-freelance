@@ -34,6 +34,14 @@ export default {
       return this.$store.getters['requestModule/hasRequests'];
     },
   },
+  created () {
+    this.loadRequests();
+  },
+  methods: {
+    loadRequests() {
+      return this.$store.dispatch('requestModule/fetchRequests');
+    },
+  },
 };
 </script>
 

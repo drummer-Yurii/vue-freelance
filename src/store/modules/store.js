@@ -12,11 +12,6 @@ const store = createStore({
       userId: 'd3',
     };
   },
-  getters: {
-    userId(state) {
-      return state.userId;
-    },
-  },
 });
 
 export default store;
