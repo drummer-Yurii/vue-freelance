@@ -5,6 +5,7 @@ import ContactDev from '@/pages/requests/ContactDev';
 import DevRegistration from '@/pages/devs/DevRegistration';
 import RequestsReceived from '@/pages/requests/RequestsReceived';
 import NotFound from '@/pages/NotFound';
+import UserAuth from './pages/Auth/UserAuth.vue';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -19,6 +20,7 @@ const router = createRouter({
     },
     { path: '/register', component: DevRegistration },
     { path: '/requests', component: RequestsReceived },
+    { path: '/auth', component: UserAuth },
     { path: '/:notFound(.*)', component: NotFound },
   ],
 });

@@ -22,9 +22,9 @@ export default {
       default: false,
     },
     to: {
-      type: Boolean,
+      type: String,
       required: false,
-      default: false,
+      default: null,
     },
   },
 };
