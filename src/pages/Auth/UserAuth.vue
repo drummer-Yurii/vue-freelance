@@ -9,8 +9,11 @@
         <label for="password">Password</label>
         <input type="password" id="password" v-model.trim="password" />
       </div>
+      <p v-if="!formIsValid">Please enter a valid email and password</p>
       <BaseButton>{{ submitButtonCaption }}</BaseButton>
-      <BaseButton type="button" mode="flat" @click="switchAuthMode">{{ switchModeButtonCaption }}</BaseButton>
+      <BaseButton type="button" mode="flat" @click="switchAuthMode">{{
+        switchModeButtonCaption
+      }}</BaseButton>
     </form>
   </BaseCard>
 </template>
@@ -35,9 +38,17 @@ export default {
   methods: {
     submitForm() {
       this.formIsValid = true;
-      if (this.email === '' || this.email.includes('@') || this.password.length < 6) {
+      if (this.email === '' || !this.email.includes('@') || this.password.length < 6) {
         this.formIsValid = false;
         return;
+      }
+      if (this.mode === 'Login') {
+        //...
+      } else {
+        this.$store.dispatch('signup', {
+          email: this.email,
+          password: this.password,
+        });
       }
     },
     switchAuthMode() {
