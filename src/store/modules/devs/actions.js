@@ -9,8 +9,9 @@ export default {
       areas: data.areas,
     };
     context.commit('registerDev', devData);
+    const token = context.rootGetters.token;
     const response = await fetch(
-      `https://app-vue-c4cfa-default-rtdb.firebaseio.com/devs/${userId}.json`,
+      `https://app-vue-c4cfa-default-rtdb.firebaseio.com/devs/${userId}.json?auth=` + token,
       {
         method: 'PUT',
         body: JSON.stringify(devData),

@@ -22,8 +22,9 @@ export default {
   },
   async fetchRequests(context) {
     const devId = context.rootGetters.userId;
+    const token = context.rootGetters.token;
     const response = await fetch(
-      `https://app-vue-c4cfa-default-rtdb.firebaseio.com/requests/${devId}.json`,
+      `https://app-vue-c4cfa-default-rtdb.firebaseio.com/requests/${devId}.json?auth=` + token,
     );
     const responseData = await response.json();
 
