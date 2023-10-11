@@ -1,5 +1,5 @@
 export default {
-  async regDev(context, data) {
+  async registerDevs(context, data) {
     const userId = context.rootGetters.userId;
     const devData = {
       firstName: data.first,

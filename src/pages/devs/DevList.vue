@@ -11,9 +11,7 @@
         <div class="controls">
           <BaseButton mode="outline" @click="loadDevs(true)">Refresh</BaseButton>
           <BaseButton link to="auth" v-if="!isLoggedIn">Login</BaseButton>
-          <BaseButton link to="/register" v-if="!isDev && !isLoading && isLoggedIn">
-            Register as a Developer
-          </BaseButton>
+          <BaseButton link to="/register" v-if="!isDev && !isLoading && isLoggedIn">Register as a Developer</BaseButton>
         </div>
         <div v-if="isLoading">
           <BaseSpinner></BaseSpinner>
@@ -84,7 +82,7 @@ export default {
       });
     },
     hasDev() {
-      return this.$store.getters['devModule/hasDev'];
+      return !this.isLoading && this.$store.getters['devModule/hasDev'];
     },
     isDev() {
       return this.$store.getters['devModule/isDevs'];

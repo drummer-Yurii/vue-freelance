@@ -7,16 +7,34 @@
       <li>
         <router-link to="/devs">All Developers</router-link>
       </li>
-      <li>
+      <li v-if="isLoggedIn">
         <router-link to="/requests">Requests</router-link>
+      </li>
+      <li v-else>
+        <router-link to="auth">Login</router-link>
+      </li>
+      <li v-if="isLoggedIn">
+        <BaseButton @click="logout">Logout</BaseButton>
       </li>
     </ul>
   </header>
 </template>
 
 <script>
+import BaseButton from '../ui/BaseButton'
 export default {
+  components: { BaseButton },
   name: 'TheHeader',
+  computed: {
+    isLoggedIn() {
+      return this.$store.getters.isAuthenticated;
+    },
+  },
+  methods: {
+    logout() {
+      return this.$store.dispatch('logout')
+    }
+  }
 };
 </script>
 
