@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import BaseButton from '../ui/BaseButton'
+import BaseButton from '../ui/BaseButton';
 export default {
   components: { BaseButton },
   name: 'TheHeader',
@@ -32,9 +32,10 @@ export default {
   },
   methods: {
     logout() {
-      return this.$store.dispatch('logout')
-    }
-  }
+      this.$store.dispatch('logout');
+      this.$router.replace('/devs');
+    },
+  },
 };
 </script>
 

@@ -10,7 +10,7 @@
       <BaseCard>
         <div class="controls">
           <BaseButton mode="outline" @click="loadDevs(true)">Refresh</BaseButton>
-          <BaseButton link to="auth" v-if="!isLoggedIn">Login</BaseButton>
+          <BaseButton link to="auth?redirect=register" v-if="!isLoggedIn">Login</BaseButton>
           <BaseButton link to="/register" v-if="!isDev && !isLoading && isLoggedIn">Register as a Developer</BaseButton>
         </div>
         <div v-if="isLoading">
